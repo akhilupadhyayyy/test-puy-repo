@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 240 10% 3.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 240 10% 3.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 240 10% 3.9%;
+        --primary: 240 10% 3.9%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 240 4.8% 95.9%;
+        --secondary-foreground: 240 5.9% 10%;
+        --muted: 240 4.8% 95.9%;
+        --muted-foreground: 240 3.8% 46.1%;
+        --accent: 217 91% 60%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 240 5.9% 90%;
+        --input: 240 5.9% 90%;
+        --ring: 217 91% 60%;
+        --radius: 0;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    html {
+        font-family:
+            "Noto Sans SC",
+            system-ui,
+            -apple-system,
+            sans-serif;
+    }
+    body {
+        @apply bg-background text-foreground;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings:
+            "rlig" 1,
+            "calt" 1;
+    }
+    code,
+    .font-mono,
+    pre {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+    }
+}
+
+/* selection */
+::selection {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+/* Custom utilities */
+@layer utilities {
+    .grid-border {
+        border-color: #e4e4e7;
+    }
+
+    .label-eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #71717a;
+        font-family: "JetBrains Mono", monospace;
+    }
+
+    .hover-lift {
+        transition:
+            transform 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease;
+    }
+    .hover-lift:hover {
+        transform: translateY(-2px);
+        border-color: #2563eb;
+        box-shadow: 0 8px 24px -8px rgba(37, 99, 235, 0.18);
+    }
+
+    .marquee {
+        display: flex;
+        gap: 2.5rem;
+        animation: marquee 35s linear infinite;
+    }
+    @keyframes marquee {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    .grid-bg {
+        background-image:
+            linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        background-size: 48px 48px;
+    }
+
+    .reveal {
+        animation: reveal 0.7s ease-out both;
+    }
+    @keyframes reveal {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .blink::after {
+        content: "_";
+        animation: blink 1s steps(2) infinite;
+    }
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+}
+
+[data-debug-wrapper="true"] {
+    display: contents !important;
+}
